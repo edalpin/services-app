@@ -1,0 +1,17 @@
+.home-container {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+
+.home-container__title {
+  width: 100%;
+  text-align: center;
+}
+
+.home-container__card {
+  width: 300px !important;
+  margin: 30px !important;
+}
