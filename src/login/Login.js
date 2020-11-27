@@ -1,3 +1,4 @@
+import React from 'react';
 import './Login.css';
 
 // Router
@@ -7,8 +8,18 @@ import { useHistory } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+}));
 
 function Login() {
   const history = useHistory();
@@ -17,7 +28,18 @@ function Login() {
     history.push('/home');
   }
 
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        'Crete Round', 
+        'serif'
+      ].join(','),
+  },});
+
+  const classes = useStyles();
+
   return (
+  <ThemeProvider theme={theme}>
     <form noValidate className="login-form">
       <Typography component="h1" variant="h5">
           Iniciar sesión
@@ -57,6 +79,9 @@ function Login() {
         Ingresar
       </Button>
     </form>
+
+  </ThemeProvider>
+
   );
 }
 
