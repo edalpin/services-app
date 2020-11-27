@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 function Login() {
   const history = useHistory();
@@ -17,7 +17,16 @@ function Login() {
     history.push('/home');
   }
 
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        'Crete Round', 
+        'serif'
+      ].join(','),
+    },});
+
   return (
+  <ThemeProvider theme={theme}>
     <form noValidate className="login-form">
       <Typography component="h1" variant="h5">
           Iniciar sesión
@@ -57,6 +66,7 @@ function Login() {
         Ingresar
       </Button>
     </form>
+  </ThemeProvider>
   );
 }
 

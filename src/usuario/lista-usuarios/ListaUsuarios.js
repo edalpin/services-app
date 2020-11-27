@@ -1,6 +1,10 @@
 import React from 'react';
+
 import './ListaUsuario.css';
 import AlertDialog from '../../alert-dialog/AlertDialog.js';
+
+// Router
+import { useHistory } from 'react-router-dom'
 
 // Material design components
 import Card from '@material-ui/core/Card';
@@ -17,8 +21,11 @@ function ListaUsuarios() {
   const openDialog = () => setDialogIsOpen(true);
   const closeDialog = () => setDialogIsOpen(false);
 
-  function editUser(){
-    console.log("entró");
+  const history = useHistory();
+
+  function handleRedirection(module, action, params) {
+    const path = action ? `${module}/${action}/${params}` : module;
+    history.push(path);
   }
 
   let users = [
@@ -64,7 +71,7 @@ function ListaUsuarios() {
 
   for (const [index] of users.entries()) {
     items.push(
-      <Card className="list-container__card">
+      <Card className="list-container__card" id= {index} key={index}>
         <CardHeader 
           avatar= {
             <Avatar>{users[index].acronym}</Avatar>
@@ -79,7 +86,7 @@ function ListaUsuarios() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary" onClick={editUser}>
+          <Button size="small" color="primary" onClick={() => handleRedirection('usuarios', 'editar', 1)}>
             Editar
           </Button>
           <Button size="small" color="primary" onClick={openDialog}>

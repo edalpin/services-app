@@ -8,6 +8,7 @@
 .list-container__title {
     width: 100%;
     text-align: center;
+    font-family: 'Crete Round', serif;
 }
   
 .list-container__card {
