@@ -5,4 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Crete Round', serif;
+}
+
+.container{
+  background-image: url('../images/background.png');
+  background-repeat: no-repeat;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ListaUsuario.css';
+import './ListaPrestadores.css';
 import AlertDialog from '../../alert-dialog/AlertDialog.js';
 
 // Router
@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 
-function ListaUsuarios() {
+function ListaPrestadores() {
 
   const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
   const openDialog = () => setDialogIsOpen(true);
@@ -29,42 +29,27 @@ function ListaUsuarios() {
   }
 
   let users = [
-    { name:'Juan Pérez', 
-      userId: 672232, 
+    { name:'Lucía Ferro', 
+      userId: 23243243, 
       userTypeId: 'Cédula',  
-      email: 'jo_128@gmail.com', 
+      email: 'lferro1@gmail.com', 
       phone: 123133, 
-      acronym: 'JP'},
-    { name:'Maria Diaz', 
+      state: 'Disponible',
+      acronym: 'LF'},
+    { name:'Mariano Lopera', 
       userId: 344232, 
       userTypeId: 'Cédula', 
       email: 'maria_d1@hotmail.com', 
       phone: 5678787, 
-      acronym: 'MD'},
-    { name:'Ana Torres', 
+      state: 'Ocupado',
+      acronym: 'ML'},
+    { name:'Lina Isaza', 
       userId: 567245, 
       userTypeId: 'Pasaporte', 
       email: 'anaTo@gmail.com', 
       phone: 6789000, 
-      acronym: 'AT'},
-    { name:'Luis Calle', 
-      userId: 102356, 
-      userTypeId: 'cédula', 
-      email: 'lcalle@gmail.com', 
-      phone: 466577, 
-      acronym: 'LC'},
-    { name:'Pablo Cortés', 
-      userId: 4565767, 
-      userTypeId: 'Pasaporte', 
-      email: 'pabloc@hotmail.com', 
-      phone: 2434343, 
-      acronym: 'PC'},
-    { name:'Gabriela Mesa', 
-      userId: 1987864, 
-      userTypeId: 'cédula', 
-      email: 'gmesa@gmail.com', 
-      phone: 56555, 
-      acronym: 'GM'}
+      state: 'Ausente',
+      acronym: 'LI'}
   ];
 
   let items = [];
@@ -74,7 +59,7 @@ function ListaUsuarios() {
       <Card className="list-container__card" id= {index} key={index}>
         <CardHeader 
           avatar= {
-            <Avatar className="card__avatara">{users[index].acronym}</Avatar>
+            <Avatar className="card__avatar">{users[index].acronym}</Avatar>
           }
           title= {users[index].name}/>
         <CardContent>
@@ -83,10 +68,11 @@ function ListaUsuarios() {
             Identificación: {users[index].userId}<br/>
             Correo: {users[index].email}<br/>
             Teléfono: {users[index].phone}<br/>
+            Estado: {users[index].state}<br/> 
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary" onClick={() => handleRedirection('usuarios', 'editar', 1)}>
+          <Button size="small" color="primary" onClick={() => handleRedirection('prestadores', 'editar', 1)}>
             Editar
           </Button>
           <Button size="small" color="primary" onClick={openDialog}>
@@ -99,11 +85,11 @@ function ListaUsuarios() {
 
   return(
     <div className="list-container">
-      <h1 className="list-container__title">Usuarios Registrados</h1>
+      <h1 className="list-container__title">Prestadores</h1>
         {items}
         <AlertDialog open={dialogIsOpen} onClose={closeDialog} />
     </div>    
   );
 }
 
-export default ListaUsuarios;
+export default ListaPrestadores;

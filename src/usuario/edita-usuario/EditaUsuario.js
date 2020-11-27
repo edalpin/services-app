@@ -1,9 +1,15 @@
+import React from 'react';
 import './EditaUsuario.css';
 
 // Material design components
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import ToastServive from 'react-material-toast';
 
@@ -13,7 +19,24 @@ const toast = ToastServive.new({
   maxCount:8
 });
 
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 200,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+}));
+
 function EditaUsuario(){
+
+  const classes = useStyles();
+  const [userTypeId, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
     let user = { name:'Juan Pérez', 
       id: 672232, 
@@ -34,18 +57,21 @@ function EditaUsuario(){
             Formulario de Edición de Usuario       
           </Typography>
       
-          <TextField
+        <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Tipo de Identificación</InputLabel>
+            <Select
             variant="filled"
-            margin="normal"
-            value={user.typeId}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={userTypeId}
             required
-            /*fullWidth*/
-            id="userTypeId"
-            label="Tipo de Identificación"
-            name="userTypeId"
-            autoComplete="userTypeId"
-            autoFocus
-          />
+            fullWidth
+            onChange={handleChange}
+            >
+            <MenuItem value={10}>Cédula</MenuItem>
+            <MenuItem value={20}>Pasaporte</MenuItem>
+            </Select>
+        </FormControl>
       
           <TextField
             variant="filled"
